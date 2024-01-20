@@ -1,0 +1,217 @@
+::-webkit-scrollbar {
+    width: 12px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* color of the thumb */
+    border-radius: 6px; /* roundness of the thumb */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #ecf0f1; /* color of the track */
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.section {
+    background-color: #d6e1ef;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1.2rem;
+    border-radius: 10px;
+}
+.one-col{
+    grid-template-columns: 1fr ;
+
+}
+.list {
+    background-color: #d6e1ef;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+
+}
+
+.todo {
+    display: inline-block;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 350px;
+
+}
+
+.todo-title {
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+
+}
+
+.new {
+    background-color: #3498db;
+}
+
+.progress {
+    background-color: #2ecc71;
+}
+
+.canceled {
+    background-color: #e74c3c;
+}
+
+.completed {
+    background-color: #27ae60;
+}
+
+.hidden {
+    display: none;
+}
+
+.todo-desc {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo-desc button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+
+}
+
+.icon {
+    width: 25px;
+}
+
+
+.form {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(52, 152, 219, 0.2);*/
+    background-color: rgba(214, 225, 239, 0.53);
+
+
+    z-index: 998;
+}
+
+.body.form-open {
+    overflow: hidden;
+}
+
+.form h2 {
+    align-self: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.label {
+    margin-bottom: 4px;
+    font-size: 18px;
+
+
+}
+
+.input {
+    margin-bottom: 20px;
+    padding: 8px 13px;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+
+}
+
+.form-btn {
+    align-self: center;
+    padding: 8px 24px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 10px;
+    border: 2px solid #3498db;
+    text-transform: uppercase;
+
+
+}
+
+.btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.detail h2 {
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.detail-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-select {
+    width: 150px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.detail-select:hover,
+.detail-select:focus {
+    border-color: #007bff; /* Change the border color on hover or focus */
+}
