@@ -2,6 +2,7 @@ import Detail from "./Detail";
 import List from "./List";
 import Form from "./Form";
 import { useState } from "react";
+import Todo from "./Todo";
 
 const obj = [
   {
@@ -94,11 +95,16 @@ function App() {
   return (
     <main className={"body"}>
       <section className={`section ${selectedToDo === null ? "one-col" : ""}`}>
-        <List
-          todoList={todoList}
-          onSelect={handelSelectToDo}
-          onDelete={handelDelete}
-        />
+        <List>
+          {todoList.map((todo) => (
+            <Todo
+              todo={todo}
+              key={todo.id}
+              onSelect={handelSelectToDo}
+              onDelete={handelDelete}
+            />
+          ))}
+        </List>
         {selectedToDo === null ? null : (
           <Detail todo={selectedToDo} onUpdateToDo={handelUpdateToDo} />
         )}
