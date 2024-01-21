@@ -215,3 +215,6 @@ main {
 .detail-select:focus {
     border-color: #007bff; /* Change the border color on hover or focus */
 }
+.hide-delete{
+    display: none;
+}

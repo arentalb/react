@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Todo({ todo, onSelect }) {
+export default function Todo({ todo, onSelect, onDelete }) {
   function statusColor() {
     const statusMap = {
       Completed: "completed",
@@ -25,6 +25,12 @@ export default function Todo({ todo, onSelect }) {
         <p>{todo.description}</p>
         <button onClick={() => onSelect(todo)}>
           <img src="/icon/pencil.svg" alt="" className={"icon"} />
+        </button>
+        <button
+          className={todo.state === "Canceled" ? "" : "hide-delete"}
+          onClick={() => onDelete(todo)}
+        >
+          <img src="/icon/trash.svg" alt="" className={"icon"} />
         </button>
       </div>
     </li>

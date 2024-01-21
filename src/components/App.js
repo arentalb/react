@@ -83,14 +83,25 @@ function App() {
     );
     setSelectedToDo(null);
   }
+  function handelDelete(deleteTodo) {
+    setTodoList(
+      todoList.filter((todo) => {
+        return todo.id !== deleteTodo.id;
+      }),
+    );
+    setSelectedToDo(null);
+  }
   return (
     <main className={"body"}>
       <section className={`section ${selectedToDo === null ? "one-col" : ""}`}>
-        <List todoList={todoList} onSelect={handelSelectToDo} />
+        <List
+          todoList={todoList}
+          onSelect={handelSelectToDo}
+          onDelete={handelDelete}
+        />
         {selectedToDo === null ? null : (
           <Detail todo={selectedToDo} onUpdateToDo={handelUpdateToDo} />
         )}
-
         {isFormOpen && (
           <>
             <div className="overlay" onClick={toggleForm}></div>
