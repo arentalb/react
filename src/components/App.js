@@ -106,7 +106,11 @@ function App() {
           ))}
         </List>
         {selectedToDo === null ? null : (
-          <Detail todo={selectedToDo} onUpdateToDo={handelUpdateToDo} />
+          <Detail
+            todo={selectedToDo}
+            onUpdateToDo={handelUpdateToDo}
+            key={selectedToDo.id}
+          />
         )}
         {isFormOpen && (
           <>

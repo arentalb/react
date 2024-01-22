@@ -8,15 +8,6 @@ export default function Detail({ todo, onUpdateToDo }) {
     state: todo.state,
   });
 
-  useEffect(() => {
-    setUpdatedTodo({
-      id: todo.id,
-      title: todo.title,
-      description: todo.description,
-      state: todo.state,
-    });
-  }, [todo]);
-
   // i can you generic function for handling multiple input change
   //   const handleInputChange = (e) => {
   //     const { name, value } = e.target;
