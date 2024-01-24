@@ -1,11 +1,13 @@
+import React, { useState } from "react";
 import Button from "./Button";
-import { useEffect, useState } from "react";
 import JSConfetti from "js-confetti";
 
 export default function Rating({ onClick, setRating }) {
   const emoji = ["😕", "😐", "😊", "😃", "😍"];
-  const [selected, setSelcted] = useState(0);
+  const [selected, setSelected] = useState(0);
+  const [showSlider, setShowSlider] = useState(false);
   const jsConfetti = new JSConfetti();
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
 
   function congrat() {
     jsConfetti.addConfetti({
@@ -17,7 +19,19 @@ export default function Rating({ onClick, setRating }) {
     <div className={"rating"}>
       <div className={"emojis"}>
         {emoji.map((em, index) => (
-          <p onClick={() => setSelcted(index + 1)} key={em}>
+          <p
+            onClick={() => setSelected(index + 1)}
+            key={em}
+            onMouseOver={() => {
+              setShowSlider(true);
+              setHoveredIndex(index);
+            }}
+            onMouseOut={() => {
+              setShowSlider(false);
+              setHoveredIndex(-1);
+            }}
+            className={`${hoveredIndex === index ? "emoji-hovered" : ""} `}
+          >
             {em}
           </p>
         ))}
@@ -35,6 +49,18 @@ export default function Rating({ onClick, setRating }) {
       ) : (
         ""
       )}
+
+      <div
+        className={`slider  
+        ${showSlider ? "slider-visible" : ""}
+        ${selected > 0 ? "slider-visible" : ""}`}
+      >
+        {hoveredIndex !== -1 ? (
+          <p>{emoji[hoveredIndex]}</p>
+        ) : (
+          <p>{emoji[selected - 1]}</p>
+        )}
+      </div>
     </div>
   );
 }
