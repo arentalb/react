@@ -29,15 +29,26 @@ img {
     background: rgba(0, 0, 0, 0.3); /* Adjust the alpha value for the desired overlay opacity */
 }
 
-.translator {
+.main {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+
+}
+.translator{
     background-color: #f0f0f0;
     padding: 40px;
     border-radius: 20px;
-
+    margin-bottom: 10px;
+}
+.rate-box{
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 h1 {
@@ -108,4 +119,26 @@ h1 {
 
 .translate-btn:hover, .select-language:hover {
     background-color: #4a81e5;
+}
+.rating{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+}
+.emojis{
+    display: flex;
+    gap: 12px;
+    font-size: 26px;
+    border: 2px solid #f0f0f0 ;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.rating-feedback{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 42px;
 }
