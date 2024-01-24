@@ -1,11 +1,11 @@
-export default function Selection({ children, value, onChange }) {
+export default function Selection({ children, value, onChangeHandler }) {
   return (
     <select
       className={"select-language"}
       name="targetLanguage"
       id="target"
       value={value}
-      onChange={onChange}
+      onChange={onChangeHandler}
     >
       {children}
     </select>

@@ -10,10 +10,9 @@ function App() {
   const [sourceLanguage, setSourceLanguage] = useState("en");
   const [targetLanguage, setTargetLanguage] = useState("fr");
   const [sourceFlag, setSourceFlag] = useState("");
-  const [targetFalg, setTargetFlag] = useState("");
-  const [isRated, setIsRated] = useState(0);
-  const [rating, setRating] = useState(0);
-  const emoji = ["😕", "😐", "😊", "😃", "😍"];
+  const [targetFlag, setTargetFlag] = useState("");
+  const [numberOfUsed, setNumberOfUsed] = useState(0);
+  const [ratedValue, setRatedValue] = useState(null);
 
   const languages = [
     { name: "English", code: "en", flag: "us" },
@@ -62,10 +61,10 @@ function App() {
 
         const text = `"${sourceText}" - translated from ${sourceName[0]} to ${targetName[0]} `;
         setTargetText(text);
-        if (isRated < 10) setIsRated((isUsed) => isUsed + 1);
+        if (numberOfUsed < 10) setNumberOfUsed((isUsed) => isUsed + 1);
       }, 1000);
     } catch (error) {
-      if (isRated < 10) setIsRated((isUsed) => isUsed + 1);
+      if (numberOfUsed < 10) setNumberOfUsed((isUsed) => isUsed + 1);
       console.error("Error:", error.message);
     }
   }
@@ -108,7 +107,7 @@ function App() {
         <img src={sourceFlag} alt={sourceFlag} />
       </div>
       <div className="right">
-        <img src={targetFalg} alt={targetFalg} />
+        <img src={targetFlag} alt={targetFlag} />
       </div>
       <div className="overlay"></div>
       <div className={"main"}>
@@ -122,7 +121,7 @@ function App() {
 
           <div className={"translator-selection-box"}>
             <Selection
-              onChange={handelSourceLanguageChange}
+              onChangeHandler={handelSourceLanguageChange}
               value={sourceLanguage}
             >
               {languages.map((language) => (
@@ -132,9 +131,9 @@ function App() {
               ))}
             </Selection>
 
-            <Button onClick={translateText}>Translate</Button>
+            <Button onClickHandler={translateText}>Translate</Button>
             <Selection
-              onChange={handelTargetLanguageChange}
+              onChangeHandler={handelTargetLanguageChange}
               value={targetLanguage}
             >
               {languages.map((language) => (
@@ -146,15 +145,15 @@ function App() {
           </div>
         </div>
 
-        {isRated > 5 && rating === 0 && (
+        {numberOfUsed > 5 && ratedValue === null && (
           <div className={"rate-box"}>
-            <Rating onClick={setIsRated} setRating={setRating} />
+            <Rating setRatedValue={setRatedValue} />
           </div>
         )}
       </div>
-      {rating !== 0 ? (
+      {ratedValue !== null ? (
         <div className={"rating-feedback"}>
-          <p>{emoji[rating - 1]}</p>
+          <p>{ratedValue}</p>
         </div>
       ) : (
         ""

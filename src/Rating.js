@@ -2,50 +2,45 @@ import React, { useState } from "react";
 import Button from "./Button";
 import JSConfetti from "js-confetti";
 
-export default function Rating({ onClick, setRating }) {
-  const emoji = ["😕", "😐", "😊", "😃", "😍"];
-  const [selected, setSelected] = useState(0);
+export default function Rating({ setRatedValue }) {
+  const emojiList = ["😕", "😐", "😊", "😃", "😍"];
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
   const [showSlider, setShowSlider] = useState(false);
-  const jsConfetti = new JSConfetti();
-  const [hoveredIndex, setHoveredIndex] = useState(-1);
 
-  function congrat() {
+  const jsConfetti = new JSConfetti();
+
+  function congratulation() {
     jsConfetti.addConfetti({
-      emojis: [emoji[selected - 1]],
+      emojis: [emojiList[selectedIndex - 1]],
     });
     jsConfetti.addConfetti();
+    setRatedValue(emojiList[selectedIndex - 1]);
   }
+
   return (
     <div className={"rating"}>
       <div className={"emojis"}>
-        {emoji.map((em, index) => (
+        {emojiList.map((emoji, index) => (
           <p
-            onClick={() => setSelected(index + 1)}
-            key={em}
+            onClick={() => setSelectedIndex(index + 1)}
+            key={emoji}
             onMouseOver={() => {
               setShowSlider(true);
-              setHoveredIndex(index);
+              setHoveredIndex(index + 1);
             }}
             onMouseOut={() => {
               setShowSlider(false);
-              setHoveredIndex(-1);
+              setHoveredIndex(0);
             }}
-            className={`${hoveredIndex === index ? "emoji-hovered" : ""} `}
+            className={`${hoveredIndex === index + 1 ? "emoji-hovered" : ""} `}
           >
-            {em}
+            {emoji}
           </p>
         ))}
       </div>
-      {selected !== 0 ? (
-        <Button
-          onClick={() => {
-            congrat();
-            onClick((isUsed) => isUsed + 1);
-            setRating(selected);
-          }}
-        >
-          Rate
-        </Button>
+      {selectedIndex !== 0 ? (
+        <Button onClickHandler={() => congratulation()}>Rate</Button>
       ) : (
         ""
       )}
@@ -53,12 +48,12 @@ export default function Rating({ onClick, setRating }) {
       <div
         className={`slider  
         ${showSlider ? "slider-visible" : ""}
-        ${selected > 0 ? "slider-visible" : ""}`}
+        ${selectedIndex > 0 ? "slider-visible" : ""}`}
       >
-        {hoveredIndex !== -1 ? (
-          <p>{emoji[hoveredIndex]}</p>
+        {hoveredIndex !== 0 ? (
+          <p>{emojiList[hoveredIndex - 1]}</p>
         ) : (
-          <p>{emoji[selected - 1]}</p>
+          <p>{emojiList[selectedIndex - 1]}</p>
         )}
       </div>
     </div>

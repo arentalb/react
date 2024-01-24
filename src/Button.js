@@ -1,6 +1,6 @@
-export default function Button({ onClick, children }) {
+export default function Button({ onClickHandler, children }) {
   return (
-    <button onClick={onClick} className={"translate-btn"}>
+    <button onClick={onClickHandler} className={"translate-btn"}>
       {children}
     </button>
   );
